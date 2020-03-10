@@ -4,10 +4,12 @@
 const express = require('express');
 const app = express();
 const port = 5000;
+const resources = require("./resources/response.json");
 
 app.get('/', (req, res) => {
 	res.status(201).json({
-		name: "Viktor"
+		name: resources.name,
+		time: new Date()
 	});
 });
 
