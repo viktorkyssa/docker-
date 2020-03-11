@@ -4,7 +4,7 @@
 const express = require('express');
 const app = express();
 const port = 5000;
-const resources = require("./resources/response.json");
+const resources = require("./res/response.json");
 
 app.get('/', (req, res) => {
 	res.status(201).json({
