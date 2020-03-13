@@ -1,0 +1,30 @@
+version: "3" # version
+
+volumes: 
+  mongodb_volume: # if such volumes doesn't exists it creates them
+
+services: # what images you wanna create
+  youtube_statistic: 
+    build: folderName/ # folder that we will make build
+    restart: always  # restart on every reload
+    environment: 
+      - TZ=Europe/Moscow
+      - YOUTUBE_API_KEY=dsgsfgfs86s6fgs
+      - MONGO_DB_ADDR=mongodb 
+      - MONGO_DB_PORT=27017
+      - LANGUAGE=RU
+
+  web_service: 
+    build: WebService/
+    restart: always 
+    ports: 
+      - 8080:8080 # ports that we'll use containerport:outerport
+    environment:
+      - MONGO_DB_PORT=27017
+      - LANGUAGE=RU
+
+  mongodb:
+    image: mongo:latest # images for pull 
+    volumes: 
+      - mongodb_volume:/data/db # connect path to preveiosly created volume
+    restart: always 
